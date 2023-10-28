@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnCloudPlatform;
 
 @Getter
 @Setter
@@ -36,5 +35,4 @@ public class Cart {
 
     @Column(name = "payment_information")
     private String paymentInformation;
-
 }
