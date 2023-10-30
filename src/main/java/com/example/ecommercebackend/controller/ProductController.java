@@ -21,11 +21,10 @@ public class ProductController {
         return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
     }
 
-//    //Build Get Product by id REST API
+    //Build Get Product by id REST API
     @GetMapping("{id}")
     public ResponseEntity<ProductDto> getProductById(@PathVariable("id") Long productId){
         ProductDto productDto = productService.getProductById(productId);
         return ResponseEntity.ok(productDto);
     }
-
 }

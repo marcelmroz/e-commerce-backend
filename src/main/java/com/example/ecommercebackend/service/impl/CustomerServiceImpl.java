@@ -7,7 +7,11 @@ import com.example.ecommercebackend.exception.ResourceNotFoundException;
 import com.example.ecommercebackend.mapper.CustomerMapper;
 import com.example.ecommercebackend.repository.CustomerRepository;
 import com.example.ecommercebackend.service.CustomerService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
+@AllArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
 
