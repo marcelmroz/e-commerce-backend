@@ -5,10 +5,7 @@ import com.example.ecommercebackend.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
 @RestController
@@ -22,6 +19,13 @@ public class ProductController {
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto){
         ProductDto savedProduct = productService.createProduct(productDto);
         return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
+    }
+
+//    //Build Get Product by id REST API
+    @GetMapping("{id}")
+    public ResponseEntity<ProductDto> getProductById(@PathVariable("id") Long productId){
+        ProductDto productDto = productService.getProductById(productId);
+        return ResponseEntity.ok(productDto);
     }
 
 }
