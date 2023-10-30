@@ -1,4 +1,27 @@
 package com.example.ecommercebackend.service.impl;
 
-public class CustomerServiceImpl {
+
+import com.example.ecommercebackend.dto.CustomerDto;
+import com.example.ecommercebackend.entity.Customer;
+import com.example.ecommercebackend.exception.ResourceNotFoundException;
+import com.example.ecommercebackend.mapper.CustomerMapper;
+import com.example.ecommercebackend.repository.CustomerRepository;
+import com.example.ecommercebackend.service.CustomerService;
+
+public class CustomerServiceImpl implements CustomerService {
+    private CustomerRepository customerRepository;
+
+    @Override
+    public CustomerDto createCustomer(CustomerDto customerDto) {
+        Customer customer = CustomerMapper.mapToCustomer(customerDto);
+        Customer savedCustomer = customerRepository.save(customer);
+        return CustomerMapper.mapToCustomerDto(savedCustomer);
+    }
+
+    @Override
+    public CustomerDto getCustomerById(Long customerId) {
+        Customer customer = customerRepository.findById(customerId)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer with given id:" + customerId + "does not exist."));
+        return CustomerMapper.mapToCustomerDto(customer);
+    }
 }
