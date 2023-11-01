@@ -36,4 +36,12 @@ public class CustomerController {
         List<CustomerDto> customers = customerService.getAllCustomers();
         return ResponseEntity.ok(customers);
     }
+
+    //Build Update Customer REST API
+    @PutMapping("{id}")
+    public ResponseEntity<CustomerDto> updateCustomer(@PathVariable("id") Long customerId,
+                                                      @RequestBody CustomerDto updatedCustomer){
+        CustomerDto customerDto = customerService.updateCustomer(customerId, updatedCustomer);
+        return ResponseEntity.ok(customerDto);
+    }
 }
