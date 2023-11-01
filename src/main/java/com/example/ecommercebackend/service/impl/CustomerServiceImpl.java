@@ -53,4 +53,13 @@ public class CustomerServiceImpl implements CustomerService {
         Customer updatedCustomerObj = customerRepository.save(customer);
         return CustomerMapper.mapToCustomerDto(updatedCustomerObj);
     }
+
+    @Override
+    public void deleteCustomer(Long customerId) {
+        Customer customer = customerRepository.findById(customerId).orElseThrow(
+                () -> new ResourceNotFoundException("Product with given id:" + customerId + "does not exist.")
+        );
+
+        customerRepository.deleteById(customerId);
+    }
 }
