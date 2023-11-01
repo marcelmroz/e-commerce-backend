@@ -39,5 +39,23 @@ public class ProductServiceImpl implements ProductService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public ProductDto updateProduct(Long productId, ProductDto updatedProduct) {
+        Product product = productRepository.findById(productId).orElseThrow(
+                () -> new ResourceNotFoundException("Product with given id:" + productId + "does not exist.")
+        );
+
+        product.setName(updatedProduct.getName());
+        product.setDescription(updatedProduct.getDescription());
+        product.setPrice(updatedProduct.getPrice());
+        product.setColor(updatedProduct.getColor());
+        product.setCategory(updatedProduct.getCategory());
+        product.setSize(updatedProduct.getSize());
+        product.setStockQuantity(product.getStockQuantity());
+
+        Product updatedProjectObj = productRepository.save(product);
+        return ProductMapper.mapToProductDto(updatedProjectObj);
+    }
+
 
 }
