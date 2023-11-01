@@ -9,6 +9,9 @@ import com.example.ecommercebackend.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class ProductServiceImpl implements ProductService {
@@ -28,4 +31,13 @@ public class ProductServiceImpl implements ProductService {
                 .orElseThrow(() -> new ResourceNotFoundException("Product with given id:" + productId + "does not exist."));
         return ProductMapper.mapToProductDto(product);
     }
+
+    @Override
+    public List<ProductDto> getAllProducts() {
+        List<Product> products = productRepository.findAll();
+        return products.stream().map((product)->ProductMapper.mapToProductDto(product))
+                .collect(Collectors.toList());
+    }
+
+
 }
