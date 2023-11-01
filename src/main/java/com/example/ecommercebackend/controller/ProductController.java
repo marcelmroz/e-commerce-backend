@@ -45,4 +45,11 @@ public class ProductController {
         return ResponseEntity.ok(productDto);
     }
 
+    //Build Delete Product REST API
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable("id") Long productId){
+        productService.deleteProduct(productId);
+        return ResponseEntity.ok("Product deleted successfully.");
+    }
+
 }
