@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,17 +21,20 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id")
-    private String userID;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
-    @Column(name = "items")
-    private String items;
+    @ManyToMany
+    @JoinTable(
+            name = "cart_product",
+            joinColumns = @JoinColumn(name = "cart_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private List<Product> products = new ArrayList<>();
 
     @Column(name = "total_price")
     private double totalPrice;
-
-    @Column(name = "total_items_count")
-    private int totalItemsCount;
 
     @Column(name = "status")
     private String status;
