@@ -12,6 +12,7 @@ Working:
 - GET http://localhost:8080/api/carts
 - PUT http://localhost:8080/api/products/id
 - PUT http://localhost:8080/api/customer/id
+- PUT http://localhost:8080/api/carts/id
 - DELETE http://localhost:8080/api/products/id
 - DELETE http://localhost:8080/api/customers/id
 
