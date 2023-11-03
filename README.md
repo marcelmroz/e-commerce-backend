@@ -9,6 +9,7 @@ Working:
 - GET http://localhost:8080/api/carts/id
 - GET http://localhost:8080/api/products
 - GET http://localhost:8080/api/customers
+- GET http://localhost:8080/api/carts
 - PUT http://localhost:8080/api/products/id
 - PUT http://localhost:8080/api/customer/id
 - DELETE http://localhost:8080/api/products/id
