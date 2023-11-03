@@ -15,4 +15,5 @@ Working:
 - PUT http://localhost:8080/api/carts/id
 - DELETE http://localhost:8080/api/products/id
 - DELETE http://localhost:8080/api/customers/id
+- DELETE http://localhost:8080/api/carts/id
 
