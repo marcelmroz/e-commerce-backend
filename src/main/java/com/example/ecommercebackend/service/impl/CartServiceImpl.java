@@ -52,15 +52,11 @@ public class CartServiceImpl implements CartService {
 
         if (updatedCart.getCustomerId() != null) {
             Long customerId = updatedCart.getCustomerId();
-
-            // Fetch the customer entity by its ID using the CustomerService
-            // Check if the customer actually exists
-            Optional<CustomerDto> optionalCustomer = Optional.ofNullable(customerService.getCustomerById(customerId));
-            if (optionalCustomer.isPresent()) {
-                cart.setCustomer(CustomerMapper.mapToCustomer(optionalCustomer.get()));
+            CustomerDto customerDto = customerService.getCustomerById(customerId);
+            if (customerDto != null) {
+                cart.setCustomer(CustomerMapper.mapToCustomer(customerDto));
             } else {
-                // Handle case where the customer doesn't exist or take appropriate action
-                cart.setCustomer(null);
+                throw new ResourceNotFoundException("Customer with ID: " + customerId + " does not exist.");
             }
         }
 
