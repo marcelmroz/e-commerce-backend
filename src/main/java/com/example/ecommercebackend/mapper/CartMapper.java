@@ -14,8 +14,10 @@ public class CartMapper {
     public static CartDto mapToCartDto(Cart cart) {
         CartDto cartDto = new CartDto();
         cartDto.setId(cart.getId());
-        cartDto.setCustomerId(cart.getCustomer().getId());
-        cartDto.setProductIds(cart.getProducts().stream().map(Product::getId).collect(Collectors.toList()));
+        if (cart.getCustomer() != null) {
+            cartDto.setCustomerId(cart.getCustomer().getId());
+        }
+        cartDto.setProductIds(cart.getProducts() != null ? cart.getProducts().stream().map(Product::getId).collect(Collectors.toList()) : null);
         cartDto.setTotalPrice(cart.getTotalPrice());
         cartDto.setStatus(cart.getStatus());
         cartDto.setPaymentInformation(cart.getPaymentInformation());
