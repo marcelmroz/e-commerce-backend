@@ -27,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDto getCustomerById(Long customerId) {
         Customer customer = customerRepository.findById(customerId)
-                .orElseThrow(() -> new ResourceNotFoundException("Customer with given id:" + customerId + "does not exist."));
+                .orElseThrow(() -> new ResourceNotFoundException("Customer with given id: " + customerId + "does not exist."));
         return CustomerMapper.mapToCustomerDto(customer);
     }
 
@@ -41,7 +41,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDto updateCustomer(Long customerId, CustomerDto updatedCustomer) {
         Customer customer = customerRepository.findById(customerId).orElseThrow(
-                () -> new ResourceNotFoundException("Product with given id:" + customerId + "does not exist.")
+                () -> new ResourceNotFoundException("Product with given id: " + customerId + "does not exist.")
         );
         customer.setFirstName(updatedCustomer.getFirstName());
         customer.setLastName(updatedCustomer.getLastName());
@@ -57,7 +57,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void deleteCustomer(Long customerId) {
         Customer customer = customerRepository.findById(customerId).orElseThrow(
-                () -> new ResourceNotFoundException("Product with given id:" + customerId + "does not exist.")
+                () -> new ResourceNotFoundException("Product with given id: " + customerId + "does not exist.")
         );
 
         customerRepository.deleteById(customerId);

@@ -34,7 +34,7 @@ public class CartServiceImpl implements CartService {
     @Override
     public CartDto getCartById(Long cartId) {
         Cart cart = cartRepository.findById(cartId)
-                .orElseThrow(() -> new ResourceNotFoundException("Cart with given ID:" + cartId + " does not exist."));
+                .orElseThrow(() -> new ResourceNotFoundException("Cart with given ID: " + cartId + " does not exist."));
         return CartMapper.mapToCartDto(cart);
     }
 
@@ -48,7 +48,7 @@ public class CartServiceImpl implements CartService {
     @Transactional
     public CartDto updateCart(Long cartId, CartDto updatedCart) {
         Cart cart = cartRepository.findById(cartId)
-                .orElseThrow(() -> new ResourceNotFoundException("Cart with given ID:" + cartId + " does not exist."));
+                .orElseThrow(() -> new ResourceNotFoundException("Cart with given ID: " + cartId + " does not exist."));
 
         if (updatedCart.getCustomerId() != null) {
             Long customerId = updatedCart.getCustomerId();
