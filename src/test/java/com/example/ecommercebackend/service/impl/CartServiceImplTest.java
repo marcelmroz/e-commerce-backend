@@ -28,7 +28,7 @@ public class CartServiceImplTest {
     @Mock
     private CustomerService customerService;
 
-    @InjectMocks // this will inject the mocks above into the CartServiceImpl
+    @InjectMocks
     private CartServiceImpl cartService;
 
     @Test
@@ -36,7 +36,6 @@ public class CartServiceImplTest {
         // Arrange
         Cart cart = new Cart();
         when(cartRepository.save(any(Cart.class))).thenReturn(cart);
-
         CartDto cartDto = new CartDto();
 
         // Act
