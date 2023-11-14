@@ -43,6 +43,7 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = customerRepository.findById(customerId).orElseThrow(
                 () -> new ResourceNotFoundException("Product with given id: " + customerId + "does not exist.")
         );
+        customer.setUserName(updatedCustomer.getUserName());
         customer.setFirstName(updatedCustomer.getFirstName());
         customer.setLastName(updatedCustomer.getLastName());
         customer.setEmailAddress(updatedCustomer.getEmailAddress());
