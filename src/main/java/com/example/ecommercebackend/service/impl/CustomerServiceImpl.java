@@ -63,4 +63,11 @@ public class CustomerServiceImpl implements CustomerService {
 
         customerRepository.deleteById(customerId);
     }
+
+    @Override
+    public boolean validateUser(String email, String password) {
+        return customerRepository.findByEmailAddress(email)
+                .map(customer -> customer.getPassword().equals(password))
+                .orElse(false);
+    }
 }

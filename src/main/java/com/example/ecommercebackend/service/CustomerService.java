@@ -14,4 +14,7 @@ public interface CustomerService {
     CustomerDto updateCustomer(Long customerId, CustomerDto updatedCustomer);
 
     void deleteCustomer(Long customerId);
+
+    boolean validateUser(String email, String password);
+
 }
