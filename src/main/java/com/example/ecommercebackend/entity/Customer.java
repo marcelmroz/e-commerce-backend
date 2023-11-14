@@ -29,7 +29,7 @@ public class Customer {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "email_address")
+    @Column(unique = true)
     private String emailAddress;
 
     @Column(name = "phone_number")
