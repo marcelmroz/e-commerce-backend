@@ -41,9 +41,4 @@ public class Customer {
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
 
-
-//    Address (with sub-parameters: Street, City, State, Zip Code, Country)
-//    Order History
-//    Account Status
-
 }
