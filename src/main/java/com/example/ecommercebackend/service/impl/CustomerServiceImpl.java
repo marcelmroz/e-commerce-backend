@@ -1,5 +1,6 @@
 package com.example.ecommercebackend.service.impl;
 
+import com.example.ecommercebackend.JwtUtil;
 import com.example.ecommercebackend.dto.CustomerDto;
 import com.example.ecommercebackend.entity.Customer;
 import com.example.ecommercebackend.exception.ResourceNotFoundException;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
+//    private final JwtUtil jwtUtil;
 
     @Override
     public CustomerDto createCustomer(CustomerDto customerDto) {
@@ -70,4 +72,11 @@ public class CustomerServiceImpl implements CustomerService {
                 .map(customer -> customer.getPassword().equals(password))
                 .orElse(false);
     }
+
+//    public String validateUser(String email, String password) {
+//        return customerRepository.findByEmailAddress(email)
+//                .filter(customer -> customer.getPassword().equals(password))
+//                .map(customer -> jwtUtil.generateToken(customer.getUserName()))
+//                .orElseThrow(() -> new RuntimeException("Invalid credentials"));
+//    }
 }
