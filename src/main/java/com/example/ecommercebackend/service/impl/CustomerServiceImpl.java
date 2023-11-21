@@ -8,6 +8,7 @@ import com.example.ecommercebackend.mapper.CustomerMapper;
 import com.example.ecommercebackend.repository.CustomerRepository;
 import com.example.ecommercebackend.service.CustomerService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
-//    private final JwtUtil jwtUtil;
+    private JwtUtil jwtUtil;
 
     @Override
     public CustomerDto createCustomer(CustomerDto customerDto) {
@@ -66,17 +67,18 @@ public class CustomerServiceImpl implements CustomerService {
         customerRepository.deleteById(customerId);
     }
 
-    @Override
-    public boolean validateUser(String email, String password) {
-        return customerRepository.findByEmailAddress(email)
-                .map(customer -> customer.getPassword().equals(password))
-                .orElse(false);
-    }
-
-//    public String validateUser(String email, String password) {
+//    @Override
+//    public boolean validateUser(String email, String password) {
 //        return customerRepository.findByEmailAddress(email)
-//                .filter(customer -> customer.getPassword().equals(password))
-//                .map(customer -> jwtUtil.generateToken(customer.getUserName()))
-//                .orElseThrow(() -> new RuntimeException("Invalid credentials"));
+//                .map(customer -> customer.getPassword().equals(password))
+//                .orElse(false);
 //    }
+
+    @Override
+    public String validateUser(String email, String password) {
+        return customerRepository.findByEmailAddress(email)
+                .filter(customer -> customer.getPassword().equals(password))
+                .map(customer -> jwtUtil.generateToken(customer.getUserName()))
+                .orElseThrow(() -> new RuntimeException("Invalid credentials"));
+    }
 }

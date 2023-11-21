@@ -54,10 +54,10 @@ public class CustomerController {
     }
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginDto loginDto) {
-        boolean isValidUser = customerService.validateUser(loginDto.getEmailAddress(), loginDto.getPassword());
-        if (isValidUser) {
-            return ResponseEntity.ok("User logged in successfully");
-        } else {
+        try {
+            String token = customerService.validateUser(loginDto.getEmailAddress(), loginDto.getPassword());
+            return ResponseEntity.ok(token);
+        } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
         }
     }
