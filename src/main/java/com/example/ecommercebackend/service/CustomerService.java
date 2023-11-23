@@ -1,6 +1,7 @@
 package com.example.ecommercebackend.service;
 
 import com.example.ecommercebackend.dto.CustomerDto;
+import com.example.ecommercebackend.dto.UserLoginResponseDto;
 
 import java.util.List;
 
@@ -17,6 +18,9 @@ public interface CustomerService {
 
 //    boolean validateUser(String email, String password);
 
-    String validateUser(String email, String password);
+    //String validateUser(String email, String password);
+
+    UserLoginResponseDto validateUser(String email, String password);
+
 
 }

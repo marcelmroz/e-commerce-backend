@@ -2,6 +2,7 @@ package com.example.ecommercebackend.service.impl;
 
 import com.example.ecommercebackend.JwtUtil;
 import com.example.ecommercebackend.dto.CustomerDto;
+import com.example.ecommercebackend.dto.UserLoginResponseDto;
 import com.example.ecommercebackend.entity.Customer;
 import com.example.ecommercebackend.exception.ResourceNotFoundException;
 import com.example.ecommercebackend.mapper.CustomerMapper;
@@ -75,10 +76,13 @@ public class CustomerServiceImpl implements CustomerService {
 //    }
 
     @Override
-    public String validateUser(String email, String password) {
+    public UserLoginResponseDto validateUser(String email, String password) {
         return customerRepository.findByEmailAddress(email)
                 .filter(customer -> customer.getPassword().equals(password))
-                .map(customer -> jwtUtil.generateToken(customer.getUserName()))
+                .map(customer -> {
+                    String token = jwtUtil.generateToken(customer.getUserName());
+                    return new UserLoginResponseDto(customer.getId(), token);
+                })
                 .orElseThrow(() -> new RuntimeException("Invalid credentials"));
     }
 }

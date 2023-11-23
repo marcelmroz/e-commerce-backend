@@ -2,6 +2,7 @@ package com.example.ecommercebackend.controller;
 
 import com.example.ecommercebackend.dto.CustomerDto;
 import com.example.ecommercebackend.dto.LoginDto;
+import com.example.ecommercebackend.dto.UserLoginResponseDto;
 import com.example.ecommercebackend.service.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -53,12 +54,12 @@ public class CustomerController {
         return ResponseEntity.ok("Customer deleted successfully.");
     }
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody LoginDto loginDto) {
+    public ResponseEntity<UserLoginResponseDto> loginUser(@RequestBody LoginDto loginDto) {
         try {
-            String token = customerService.validateUser(loginDto.getEmailAddress(), loginDto.getPassword());
-            return ResponseEntity.ok(token);
+            UserLoginResponseDto loginResponse = customerService.validateUser(loginDto.getEmailAddress(), loginDto.getPassword());
+            return ResponseEntity.ok(loginResponse);
         } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
     }
 

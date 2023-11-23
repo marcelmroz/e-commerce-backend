@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Component
 public class JwtUtil {
-    private String secretKey = "yourSecretKey"; // Choose a strong secret key
+    private String secretKey = "yourSecretKey";
 
     public String generateToken(String username) {
         long nowMillis = System.currentTimeMillis();
