@@ -18,7 +18,7 @@ public interface CustomerService {
 
 //    boolean validateUser(String email, String password);
 
-    //String validateUser(String email, String password);
+//    String validateUser(String email, String password);
 
     UserLoginResponseDto validateUser(String email, String password);
 
