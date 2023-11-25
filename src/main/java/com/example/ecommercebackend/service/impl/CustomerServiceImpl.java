@@ -10,7 +10,6 @@ import com.example.ecommercebackend.repository.CustomerRepository;
 import com.example.ecommercebackend.service.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,15 +21,8 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
     private JwtUtil jwtUtil;
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
-
     @Override
     public CustomerDto createCustomer(CustomerDto customerDto) {
-        // Hash the password before saving
-        String hashedPassword = passwordEncoder.encode(customerDto.getPassword());
-        customerDto.setPassword(hashedPassword);
-
         Customer customer = CustomerMapper.mapToCustomer(customerDto);
         Customer savedCustomer = customerRepository.save(customer);
         return CustomerMapper.mapToCustomerDto(savedCustomer);
