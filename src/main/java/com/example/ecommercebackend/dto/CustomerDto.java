@@ -18,5 +18,8 @@ public class CustomerDto {
     private String emailAddress;
     private String phoneNumber;
     private String password;
+    private String salt;
     private Date dateOfBirth;
+    private String lastIpAddress;
+    private Date lastLogIn;
 }

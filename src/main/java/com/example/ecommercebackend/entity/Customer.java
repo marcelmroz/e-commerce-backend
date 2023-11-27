@@ -38,7 +38,15 @@ public class Customer {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "salt")
+    private String salt;
+
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
 
+    @Column(name = "last_ip_address")
+    private String lastIpAddress;
+
+    @Column(name = "last_log_in")
+    private Date lastLogIn;
 }

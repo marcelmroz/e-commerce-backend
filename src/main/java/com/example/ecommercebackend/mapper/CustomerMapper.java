@@ -13,7 +13,10 @@ public class CustomerMapper {
             customer.getEmailAddress(),
             customer.getPhoneNumber(),
             customer.getPassword(),
-            customer.getDateOfBirth()
+            customer.getSalt(),
+            customer.getDateOfBirth(),
+            customer.getLastIpAddress(),
+            customer.getLastLogIn()
         );
     }
 
@@ -26,7 +29,10 @@ public class CustomerMapper {
             customerDto.getEmailAddress(),
             customerDto.getPhoneNumber(),
             customerDto.getPassword(),
-            customerDto.getDateOfBirth()
+            customerDto.getSalt(),
+            customerDto.getDateOfBirth(),
+            customerDto.getLastIpAddress(),
+            customerDto.getLastLogIn()
         );
     }
 }
