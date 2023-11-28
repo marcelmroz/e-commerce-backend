@@ -9,7 +9,6 @@ import com.example.ecommercebackend.mapper.CustomerMapper;
 import com.example.ecommercebackend.repository.CustomerRepository;
 import com.example.ecommercebackend.service.CustomerService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

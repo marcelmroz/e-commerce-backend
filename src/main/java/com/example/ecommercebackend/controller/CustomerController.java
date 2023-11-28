@@ -53,6 +53,8 @@ public class CustomerController {
         customerService.deleteCustomer(customerId);
         return ResponseEntity.ok("Customer deleted successfully.");
     }
+
+    //Build Login Customer REST API
     @PostMapping("/login")
     public ResponseEntity<UserLoginResponseDto> loginUser(@RequestBody LoginDto loginDto) {
         try {
