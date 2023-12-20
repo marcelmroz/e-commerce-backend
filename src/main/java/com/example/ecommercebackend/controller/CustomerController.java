@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @AllArgsConstructor
@@ -53,6 +54,8 @@ public class CustomerController {
         customerService.deleteCustomer(customerId);
         return ResponseEntity.ok("Customer deleted successfully.");
     }
+
+    //Build Login Customer REST API
     @PostMapping("/login")
     public ResponseEntity<UserLoginResponseDto> loginUser(@RequestBody LoginDto loginDto) {
         try {
