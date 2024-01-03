@@ -16,7 +16,7 @@ public class CartMapper {
         CartDto cartDto = new CartDto();
         cartDto.setId(cart.getId());
         if (cart.getCustomer() != null) {
-            cartDto.setCustomerId(cart.getCustomer().getId());
+            cartDto.setCustomerId(Long.valueOf(cart.getCustomer().getId()));
         }
         cartDto.setProductIds(cart.getProducts() != null ? cart.getProducts().stream().map(Product::getId).collect(Collectors.toList()) : null);
         cartDto.setTotalPrice(cart.getTotalPrice());
@@ -31,7 +31,7 @@ public class CartMapper {
 
         // Set the customer for the cart
         Customer customer = new Customer();
-        customer.setId(cartDto.getCustomerId());
+        customer.setId(Math.toIntExact(cartDto.getCustomerId()));
         cart.setCustomer(customer);
 
         // Handle products in the cart
