@@ -34,6 +34,13 @@ public class CustomerService {
     private final TemporaryPasswordRepository tempRepository;
     private final EmailSenderService senderService;
 
+
+    public CustomerDto getCustomerByEmail(String email) {
+        return repository.findByEmail(email)
+                .map(CustomerMapper::mapToCustomerDto)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer not found with email: " + email));
+    }
+
     public CustomerDto getCustomerById(String name) {
         Customer customer = repository.findByEmail(name).orElseThrow(() -> new ResourceNotFoundException(
                 "Customer with id was not found"

@@ -52,7 +52,7 @@ public class CartServiceImpl implements CartService {
                 .orElseThrow(() -> new ResourceNotFoundException("Cart with given ID: " + cartId + " does not exist."));
 
         if (updatedCart.getCustomerId() != null) {
-            Long customerId = updatedCart.getCustomerId();
+            Integer customerId = updatedCart.getCustomerId();
             CustomerDto customerDto = customerService.getCustomerById(String.valueOf(customerId));
             if (customerDto != null) {
                 cart.setCustomer(CustomerMapper.mapToCustomer(customerDto));

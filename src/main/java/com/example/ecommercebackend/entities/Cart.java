@@ -23,16 +23,13 @@ public class Cart {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 
-    @ManyToMany
-    @JoinTable(
-            name = "cart_product",
-            joinColumns = @JoinColumn(name = "cart_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private List<Product> products = new ArrayList<>();
+    @ElementCollection
+    @CollectionTable(name = "cart_products", joinColumns = @JoinColumn(name = "cart_id"))
+    @Column(name = "product_id")
+    private List<Long> productIds;
 
     @Column(name = "total_price")
     private double totalPrice;

@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class CartDto {
     private Long id;
-    private Long customerId;
+    private Integer customerId;
     private List<Long> productIds;
     private double totalPrice;
     private String status;
