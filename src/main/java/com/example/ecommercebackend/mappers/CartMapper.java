@@ -14,6 +14,7 @@ public class CartMapper {
             cartDto.setCustomerId(cart.getCustomer().getId());
         }
         cartDto.setProductIds(cart.getProductIds());
+        cartDto.setEmail(cart.getEmail());
         cartDto.setTotalPrice(cart.getTotalPrice());
         cartDto.setStatus(cart.getStatus());
         cartDto.setPaymentInformation(cart.getPaymentInformation());
@@ -33,7 +34,7 @@ public class CartMapper {
 
         // Set product IDs
         cart.setProductIds(cartDto.getProductIds());
-
+        cart.setEmail(cartDto.getEmail());
         cart.setTotalPrice(cartDto.getTotalPrice());
         cart.setStatus(cartDto.getStatus());
         cart.setPaymentInformation(cartDto.getPaymentInformation());

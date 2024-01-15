@@ -28,6 +28,11 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
+        if (shouldSkipJwtProcessing(request.getServletPath())) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         if(request.getServletPath().contains("/api/auth")) {
             filterChain.doFilter(request, response);
             return;
@@ -51,6 +56,10 @@ public class JwtFilter extends OncePerRequestFilter {
             }
         }
         filterChain.doFilter(request, response);
+    }
+    private boolean shouldSkipJwtProcessing(String servletPath) {
+        // List of endpoints that should skip JWT processing
+        return servletPath.contains("/api/cart/checkout");
     }
 
 }

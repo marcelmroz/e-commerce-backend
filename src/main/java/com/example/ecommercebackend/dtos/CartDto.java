@@ -14,6 +14,7 @@ public class CartDto {
     private Long id;
     private Integer customerId;
     private List<Long> productIds;
+    private String email;
     private double totalPrice;
     private String status;
     private String paymentInformation;

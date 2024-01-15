@@ -31,6 +31,9 @@ public class Cart {
     @Column(name = "product_id")
     private List<Long> productIds;
 
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "total_price")
     private double totalPrice;
 
