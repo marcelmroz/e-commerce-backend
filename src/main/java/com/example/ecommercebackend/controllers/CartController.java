@@ -62,7 +62,6 @@ public class CartController {
 //        });
 
         emailContent.append("\nTotal Price: ").append(cartDto.getTotalPrice());
-        // Add more details as needed
 
         return emailContent.toString();
     }
