@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -42,13 +41,24 @@ public class CartController {
         cartDto.setCustomerId(customer.getId());
         try {
             CartDto createdCart = cartService.createCart(cartDto);
-            senderService.sendEmail(customer.getEmail(), "Purchase Confirmation", "Thank you for your purchase!");
+            String emailContent = createEmailContent(createdCart);
+            senderService.sendEmail(customer.getEmail(), "Purchase Confirmation", emailContent);
             return new ResponseEntity<>("Cart saved and email sent.", HttpStatus.CREATED);
+
         } catch (Exception e) {
             // Log the exception for further investigation
             e.printStackTrace();
             return new ResponseEntity<>("Failed to save the cart: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    private String createEmailContent(CartDto cartDto) {
+        StringBuilder emailContent = new StringBuilder();
+        emailContent.append("Thank you for your purchase! Here are the details of your cart:\n\n");
+
+        emailContent.append("\nTotal Price: ").append(cartDto.getTotalPrice());
+
+        return emailContent.toString();
     }
 
 }
